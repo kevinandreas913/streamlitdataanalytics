@@ -62,3 +62,4 @@ Jika mengalami error, coba langkah berikut:
 - **Nama:** Andreas Kevin  
 - **Email:** kevinandreas913@gmail.com  
 - **ID Dicoding:** andreas_kevin_6396  
+- **Link** https://dataanalytics-andreaskevin-bikesharingdataset.streamlit.app/
