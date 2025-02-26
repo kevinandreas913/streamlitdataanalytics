@@ -1,7 +1,7 @@
 # 🚲 Bike Sharing Dashboard
 
-## 📌 Deskripsi Proyek
-Dashboard ini dibuat menggunakan **Streamlit** untuk menganalisis dataset "Bike Sharing". Dashboard ini menampilkan berbagai visualisasi data, analisis clustering, dan informasi statistik tentang pola penggunaan sepeda.
+## Deskripsi
+Dashboard ini dibuat menggunakan **Streamlit** untuk menganalisis dataset "Bike Sharing". Dashboard ini menampilkan proses Wrangling data, EDA, visualisasi data, analisis clustering, dan kesimpulan.
 
 ---
 
@@ -11,7 +11,7 @@ Dashboard ini dibuat menggunakan **Streamlit** untuk menganalisis dataset "Bike 
 Clone repository ini menggunakan Git atau unduh secara manual:
 ```sh
 # Clone dengan Git
-git clone https://github.com/username/repository.git
+git clone https://github.com/kevinandreas913/streamlitdataanalytics.git
 # Masuk ke folder proyek
 cd repository
 ```
@@ -20,7 +20,6 @@ Atau jika diunduh secara manual, ekstrak file ZIP dan buka folder proyek di term
 ### 2️⃣ **Buat Virtual Environment**
 Sebelum menjalankan proyek, buat virtual environment untuk mengisolasi dependensi:
 ```sh
-# Untuk pengguna Windows
 python -m venv venv
 venv\Scripts\activate
 ```
