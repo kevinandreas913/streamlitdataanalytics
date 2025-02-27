@@ -34,17 +34,17 @@ st.write("""
     1. file csv harus bernama "day.csv".  
     2. file harus berformat csv.
 """)
-uploaded_file = st.file_uploader("upload file anda!", type="csv")
+# uploaded_file = st.file_uploader("upload file anda!", type="csv")
 
-if uploaded_file is None:
-    st.stop()
+# if uploaded_file is None:
+#     st.stop()
 
-if uploaded_file.name != "day.csv" or not uploaded_file.name.endswith(".csv"):
-    st.write("Masukkan ulang data, data tidak sesuai. Pastikan untuk saat ini anda menggunakan data day.csv")
-    st.stop()
+# if uploaded_file.name != "day.csv" or not uploaded_file.name.endswith(".csv"):
+#     st.write("Masukkan ulang data, data tidak sesuai. Pastikan untuk saat ini anda menggunakan data day.csv")
+#     st.stop()
 
 st.success("Data berhasil dibaca!")
-df_day = pd.read_csv(uploaded_file, sep=",")
+df_day = pd.read_csv("day.csv", sep=",")
 st.dataframe(df_day)
 
 
