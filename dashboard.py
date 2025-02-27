@@ -244,9 +244,9 @@ with st.sidebar:
     start_date, end_date = st.date_input("Rentang Waktu", min_value=min_date, max_value=max_date, value=[min_date, max_date])
 df_filtered = df_day[(df_day["dteday"] >= pd.to_datetime(start_date)) & (df_day["dteday"] <= pd.to_datetime(end_date))]
 
+
 # Layout
 col1, col2 = st.columns(2)
-col3, col4 = st.columns(2)
 
 with col1:
     st.write(f"### Data Penyewaan dari {start_date} hingga {end_date}")
@@ -273,8 +273,66 @@ with col2:
             st.warning(f"Tidak ada data untuk tanggal {date.strftime('%Y-%m-%d')}.")
         else:
             st.write(f"Anda memilih tanggal: **{date.strftime('%Y-%m-%d')}**")
-            st.dataframe(processdate)
+            st.dataframe(processdate)   
 
+col1_1, col2_2 = st.columns(2)
+
+with col1_1:
+    if df_filtered.empty:
+        st.warning("Tidak ada data dalam rentang tanggal yang dipilih.")
+    else:
+        st.write(f"### Data Penyewaan dari {start_date} hingga {end_date}")
+
+        fig, axis = plt.subplots(figsize=(10, 5))
+        axis.set_title("Grafik Tingkat Penyewaan oleh Registered dan Casual")
+        
+        axis.plot(
+            df_filtered["dteday"],
+            df_filtered["cnt"],
+            linewidth=2,
+            color="black",
+            marker="o"
+        )
+
+        for x, y in zip(df_filtered["dteday"], df_filtered["cnt"]):
+            axis.text(x, y, str(y), fontsize=10, ha="right", va="bottom")
+
+        axis.set_xlabel("Date")
+        axis.set_ylabel("Penyewa")
+        axis.set_xticks(df_filtered["dteday"])
+        axis.set_xticklabels(df_filtered["dteday"].dt.strftime('%Y-%m-%d'), rotation=45)
+
+        st.pyplot(fig)
+with col2_2:
+    st.write(f"### Data Penyewaan dari {start_date} hingga {end_date}")
+    if df_filtered.empty:
+        st.warning("Tidak ada data dalam rentang tanggal yang dipilih.")
+    else:
+        def persencasualregistered(data):
+            sumcasual = data["casual"].sum()
+            sumregistered = data["registered"].sum()
+            total = sumcasual + sumregistered
+            persencasual = (sumcasual / total) * 100 if total > 0 else 0
+            persenregistered = (sumregistered / total) * 100 if total > 0 else 0
+            return persencasual, persenregistered
+
+        persencasual, persenregistered = persencasualregistered(df_filtered)
+        keterangan = ["Casual", "Registered"]
+        nilai = [persencasual, persenregistered]
+
+        fig2, axis2 = plt.subplots(figsize=(7, 5))
+        axis2.set_title("Persentase Penyewaan berdasarkan Casual dan Registered")
+        axis2.pie(
+            nilai,
+            labels=keterangan,
+            autopct='%1.1f%%',
+            colors=["red", "blue"],
+            startangle=90,
+            wedgeprops={'edgecolor': 'black'}
+        )
+        st.pyplot(fig2)
+
+col3, col4 = st.columns(2)
 with col3:
     st.write("**Bagaimana perkembangan tingkat penyewaan pada 30 hari belakang berdasarkan total semua penyewa (registrasi dan casual)?**")
     tanggal = df_day["dteday"][-30:] 
