@@ -255,7 +255,7 @@ st.write("""
     clustering merupakan tahap yang digunakan untuk mengkumpulkan data yang berbeda menjadi beberapa kelompok yang menjadi lebih rapi dan jelas.  
     Pada contoh kasus ini, clustering dilakukan:  
     1. Pengambilan pengelompokkan diambil temp, atemp didasarkan pada kolerasi matrik yang terliht kaitan kuat antara atemp dan temp dengan cnt (total penyewaan).
-    2. Ini berarti bahwa seorang dapat menentukan total penyewaan mereka berdasarkan kondisi temp dan atemp setempat.
+    2. Ini berarti bahwa seorang dapat menentukan perkiraan prediksi penyewaan mereka berdasarkan kondisi temp dan atemp setempat.
 """)
 def categorize_temp(temp):
     q1_temp = df_day["temp"].quantile(0.25)
